@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>pentaho</groupId>
+    <artifactId>cde-plugin</artifactId>
+    <version>8.1-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>cde-core-js</artifactId>
+  <packaging>pom</packaging>
+
+  <properties>
+    <!--js.project.list>ccc</js.project.list-->
+    <karma.legacy.file.config>karma.ci.conf.legacy.js</karma.legacy.file.config>
+
+    <!--docjs.config.file>jsdoc-cde.json</docjs.config.file>
+    <docjs.config.github.branch>master</docjs.config.github.branch>
+    <docjs.config.template.directory>${project.basedir}/src/doc/javascript/template</docjs.config.template.directory-->
+  </properties>
+
+  <dependencies>
+    <!--dependency>
+        <groupId>pentaho</groupId>
+        <artifactId>ccc</artifactId>
+        <type>zip</type>
+    </dependency-->
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.github.eirslett</groupId>
+        <artifactId>frontend-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>javascript-legacy-tests</id>
+            <phase>${javascript-test_karma-phase}</phase>
+            <goals>
+              <goal>karma</goal>
+            </goals>
+            <configuration>
+              <karmaConfPath>${build.javascriptTestConfigDirectory}/${karma.legacy.file.config}</karmaConfPath>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

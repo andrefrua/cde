@@ -1,25 +1,13 @@
 build/
-dist/
-server/plugin/lib/
-server/plugin/runtime-lib/
-server/plugin/test-lib/
-server/plugin/bin/
-server/plugin/override.properties
-server/plugin/resource/resources/cdf-dd.html
-server/plugin/resource/resources/ext-editor.html
-server/plugin/resource/images/
-server/plugin/resource/js/
-server/plugin/resource/css/
-server/plugin/resource/includes.properties
-server/plugin/resource/resources/scripts.html
-server/plugin/resource/resources/styles.html
-nbproject/private/
 .DS_Store
 *~
 /server/plugin/resource/resources/base/export
 /server/plugin/runtime-lib/
 /bin
 out
+target
+
+*.jar
 
 #Eclipe project files
 .classpath
@@ -32,7 +20,6 @@ out
 .idea
 
 .ant-targets-build.xml
-
 
 cde-core/bin
 cde-pentaho/bin

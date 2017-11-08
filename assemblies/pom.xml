@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>pentaho</groupId>
+    <artifactId>cde-plugin</artifactId>
+    <version>8.1-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>cde-plugin-assemblies</artifactId>
+  <packaging>pom</packaging>
+  <description>Pentaho Community Dashboard Editor Assemblies</description>
+
+  <properties>
+    <pentaho-osgi-bundles.version>8.1-SNAPSHOT</pentaho-osgi-bundles.version>
+  </properties>
+
+  <modules>
+    <module>cde</module>
+    <!--module>cde-js</module-->
+    <!--module>cde-samples</module-->
+  </modules>
+
+  <dependencyManagement>
+    <!--dependencies>
+      <dependency>
+        <groupId>pentaho</groupId>
+        <artifactId>cdf-core-js</artifactId>
+        <version>${project.version}</version>
+        <type>zip</type>
+      </dependency>
+      <dependency>
+        <groupId>pentaho</groupId>
+        <artifactId>cdf-pentaho-js</artifactId>
+        <version>${project.version}</version>
+        <type>zip</type>
+      </dependency>
+    </dependencies-->
+  </dependencyManagement>
+</project>

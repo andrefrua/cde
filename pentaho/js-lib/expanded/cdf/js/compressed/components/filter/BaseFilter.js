@@ -1,0 +1,14 @@
+define(["../../Logger","./models/SelectionTree","./views/Views","./controllers/RootCtrl","./controllers/Manager","./strategies/AbstractSelect","./strategies/LimitedSelect","./strategies/MultiSelect","./strategies/SingleSelect","./data-handlers/InputDataHandler","./data-handlers/OutputDataHandler","./extensions/sorters","./extensions/renderers","./base/templates","./base/defaults"],function(e,t,s,l,o,i,n,r,a,c,S,u,m,p,g){
+return{Logger:e,Models:{SelectionTree:t},Views:s,Controllers:{RootCtrl:l,Manager:o
+},SelectionStrategies:{AbstractSelect:i,LimitedSelect:n,MultiSelect:r,SingleSelect:a
+},DataHandlers:{Input:c,Output:S},Extensions:{Sorters:u,Renderers:m},defaults:g,templates:p,
+Enum:{select:t.SelectionStates,selectionStrategy:{LimitedSelect:{Root:{options:{className:"multi-select",
+showCommitButtons:!0,showSelectedItems:!1,showNumberOfSelectedItems:!0,showGroupSelection:!0,
+label:"All"}},Item:{options:{showButtonOnlyThis:!0}},selectionStrategy:{type:"LimitedSelect",
+limit:500},output:{trigger:"apply"}},MultiSelect:{Root:{options:{className:"multi-select",
+showCommitButtons:!0,showSelectedItems:!1,showNumberOfSelectedItems:!0,showGroupSelection:!0,
+label:"All"}},Item:{options:{showButtonOnlyThis:!0}},selectionStrategy:{type:"MultiSelect"
+},output:{trigger:"apply"}},SingleSelect:{Root:{options:{className:"single-select",
+showCommitButtons:!1,showSelectedItems:!0,showNumberOfSelectedItems:!1,showGroupSelection:!1
+}},Item:{options:{showButtonOnlyThis:!1}},selectionStrategy:{type:"SingleSelect"},
+output:{trigger:"apply"}}}}}});

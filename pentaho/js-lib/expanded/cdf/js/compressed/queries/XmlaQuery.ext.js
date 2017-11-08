@@ -1,0 +1,1 @@
+define([],function(){return{getXmla:function(){return CONTEXT_PATH+"Xmla"}}});

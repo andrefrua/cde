@@ -1,0 +1,4 @@
+define(["../../../lib/mustache","text!../templates/Group-skeleton.html","text!../templates/Group-template.html","text!../templates/Item-template.html","text!../templates/Root-footer.html","text!../templates/Root-header.html","text!../templates/Root-overlay.html","text!../templates/Root-skeleton.html","text!../templates/Root-template.html"],function(t,e,o,l,m,a,p,r,s){
+function h(e,o){n[e]=o,t.parse(n[e])}var n={};return h("Group-skeleton",e),h("Group-template",o),
+h("Item-template",l),h("Root-footer",m),h("Root-header",a),h("Root-overlay",p),h("Root-skeleton",r),
+h("Root-template",s),h(void 0,"No template"),n});
