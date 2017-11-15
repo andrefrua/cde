@@ -13,6 +13,7 @@
 
 package pt.webdetails.cdf.dd.structure;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -284,14 +285,15 @@ public class DashboardWcdfDescriptor {
   }
 
   public static DashboardWcdfDescriptor load( String wcdfFilePath ) throws IOException {
+/*
     IReadAccess readAccess = Utils.getSystemOrUserReadAccess( wcdfFilePath );
     if ( readAccess == null || !readAccess.fileExists( wcdfFilePath ) ) {
       return null;
     }
-
+*/
     Document wcdfDoc = null;
     try {
-      wcdfDoc = Utils.getDocFromFile( readAccess.fetchFile( wcdfFilePath ), null );
+      wcdfDoc = Utils.getDocFromFile( new File( wcdfFilePath )/*readAccess.fetchFile( wcdfFilePath )*/, null );
       DashboardWcdfDescriptor wcdf = DashboardWcdfDescriptor.fromXml( wcdfDoc );
       wcdf.setPath( wcdfFilePath );
       return wcdf;

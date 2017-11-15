@@ -213,7 +213,7 @@ public class RenderApiTest {
   public void afterEach() {
     reset( mockHelper );
   }
-
+/*
   @Test
   public void testGetHeaders() throws IOException, ThingWriteException {
     //case1 -> absolute=true&root=(empty)
@@ -389,7 +389,7 @@ public class RenderApiTest {
   private String doRenderCase( String wcdf ) throws IOException, ThingWriteException {
     return renderApi.render( "", "", wcdf, false, "", false, true, false, "http", "", "", mockedHttpServletRequest );
   }
-
+*/
   private String doGetDashboardCase( String alias )
     throws IOException, ThingWriteException {
     return renderApi.getDashboard( DUMMY_REQUIRE_WCDF, false, "", false, true, false, "http", "", "", alias,

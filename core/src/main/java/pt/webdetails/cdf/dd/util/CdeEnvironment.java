@@ -31,7 +31,8 @@ import pt.webdetails.cpf.repository.api.IUserContentAccess;
 public abstract class CdeEnvironment {
 
   public static IContentAccessFactory getContentAccessFactory() {
-    return CdeEngine.getInstance().getEnvironment().getContentAccessFactory();
+    //return CdeEngine.getInstance().getEnvironment().getContentAccessFactory();
+    return null;
   }
 
   public static IUserContentAccess getUserContentAccess() {
@@ -75,7 +76,8 @@ public abstract class CdeEnvironment {
   }
 
   public static IPluginResourceLocationManager getPluginResourceLocationManager() {
-    return CdeEngine.getInstance().getEnvironment().getPluginResourceLocationManager();
+    //return CdeEngine.getInstance().getEnvironment().getPluginResourceLocationManager();
+    return new pt.webdetails.cdf.dd.plugin.resource.PluginResourceLocationManager();
   }
 
   public static IDataSourceManager getDataSourceManager() {
@@ -91,7 +93,7 @@ public abstract class CdeEnvironment {
   }
 
   public static String getSystemDir() {
-    return CdeEngine.getInstance().getEnvironment().getSystemDir();
+    return "resources"; //CdeEngine.getInstance().getEnvironment().getSystemDir();
   }
 
   public static IFileHandler getFileHandler() {

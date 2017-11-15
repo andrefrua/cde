@@ -77,7 +77,7 @@ public class DashboardDesignerContentGenerator extends SimpleContentGenerator {
     long start = System.currentTimeMillis();
     UUID uuid = CpfAuditHelper.startAudit( getPluginName(), auditPath, getObjectName(),
       this.userSession, this, requestParams );
-
+/*
     if ( create ) {
 
       PluginIOUtils.writeOutAndFlush( getResponse().getOutputStream(),
@@ -106,6 +106,7 @@ public class DashboardDesignerContentGenerator extends SimpleContentGenerator {
         renderer.render( "", "", filePath, inferScheme, root, absolute, bypassCacheRead, debug, scheme,
           view, style, getRequest() ) );
     }
+    */
 
     long end = System.currentTimeMillis();
     CpfAuditHelper.endAudit( getPluginName(), auditPath, getObjectName(), this.userSession,

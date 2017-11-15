@@ -30,7 +30,7 @@ public class RenderApiForTesting extends RenderApi {
   public RenderApiForTesting( ICdeEnvironment cdeEnvironment ) {
     this.privateEnviroment = cdeEnvironment;
   }
-
+/*
   @Override
   protected DashboardManager getDashboardManager() {
     if ( dashboardManagerForTests == null ) {
@@ -63,4 +63,5 @@ public class RenderApiForTesting extends RenderApi {
     throws Exception {
     return cdfContext;
   }
+*/
 }

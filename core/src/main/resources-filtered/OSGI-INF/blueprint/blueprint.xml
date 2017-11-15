@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:jaxrs="http://cxf.apache.org/blueprint/jaxrs"
+           xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0
+           http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+           http://cxf.apache.org/blueprint/jaxrs http://cxf.apache.org/schemas/blueprint/jaxrs.xsd">
+
+  <!--reference id="dataSourceRegistryService" interface="org.pentaho.det.api.data.access.IDataSourceRegistry"/-->
+
+  <bean id="cdeRenderApiEndpoint" class="pt.webdetails.cdf.dd.api.RenderApi">
+    <!--property name="dataSourceRegistry" ref="dataSourceRegistryService"/-->
+  </bean>
+  <!--bean id="dataModelResourceEndpoint" class="org.pentaho.det.impl.data.access.endpoints.DataModelEndpoint">
+    <property name="dataSourceRegistry" ref="dataSourceRegistryService"/>
+  </bean>
+  <bean id="executeQueryControllerEndpoint" class="org.pentaho.det.impl.data.access.endpoints.ExecuteQueryEndpoint">
+    <property name="dataSourceRegistry" ref="dataSourceRegistryService"/>
+  </bean>
+  <bean id="queryResourceEndpoint" class="org.pentaho.det.impl.data.access.endpoints.QueryExecutionEndpoint">
+    <property name="dataSourceRegistry" ref="dataSourceRegistryService"/>
+  </bean-->
+
+  <bean id="objectMapper" class="pt.webdetails.cdf.dd.api.QueryServiceJacksonModule" factory-method="getMapper"/>
+  <bean id="jsonProvider" class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider">
+    <property name="mapper" ref="objectMapper"/>
+  </bean>
+
+  <jaxrs:server address="/det/core/cde" id="cdeService">
+    <jaxrs:serviceBeans>
+      <ref component-id="cdeRenderApiEndpoint"/>
+      <!--ref component-id="dataModelResourceEndpoint"/>
+      <ref component-id="executeQueryControllerEndpoint"/>
+      <ref component-id="queryResourceEndpoint"/-->
+    </jaxrs:serviceBeans>
+
+    <jaxrs:extensionMappings>
+      <entry key="json" value="application/json"/>
+      <entry key="xml" value="application/xml"/>
+    </jaxrs:extensionMappings>
+
+    <jaxrs:providers>
+      <ref component-id="jsonProvider"/>
+    </jaxrs:providers>
+  </jaxrs:server>
+
+</blueprint>

@@ -131,15 +131,15 @@ public class CdfStyles {
 
       String customStylePath = RESOURCE_STYLES_DIR_SOLUTION + styleFilename;
 
-      if ( CdeEnvironment.getPluginRepositoryReader().fileExists( customStylePath ) ) {
+      /*if ( CdeEnvironment.getPluginRepositoryReader().fileExists( customStylePath ) ) {
         stylePath = customStylePath;
 
       } else if ( CdeEnvironment.getPluginSystemReader( SYSTEM_RESOURCE_STYLES_DIR ).fileExists( styleFilename ) ) {
         stylePath = SYSTEM_RESOURCE_STYLES_DIR + styleFilename;
-      }
+      }*/
     }
 
-    return stylePath;
+    return SYSTEM_RESOURCE_STYLES_DIR + styleFilename;
   }
 
   private class Style {

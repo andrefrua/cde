@@ -41,7 +41,7 @@
     <global.require.file></global.require.file>
     <requirejs.config.files.pattern></requirejs.config.files.pattern>
 
-    <cpf.version>${project.version}</cpf.version>
+    <!--cpf.version>${project.version}</cpf.version-->
     <!-- ccc.revision>${project.version}</ccc.revision -->
 
     <commons-io.version>1.4</commons-io.version>
@@ -77,7 +77,7 @@
       <dependency>
         <groupId>pentaho</groupId>
         <artifactId>cpf-core</artifactId>
-        <version>${cpf.version}</version>
+        <version>${project.version}</version>
         <exclusions>
           <exclusion>
             <artifactId>*</artifactId>
@@ -88,7 +88,7 @@
       <dependency>
         <groupId>pentaho</groupId>
         <artifactId>cpf-pentaho</artifactId>
-        <version>${cpf.version}</version>
+        <version>${project.version}</version>
         <exclusions>
           <exclusion>
             <artifactId>*</artifactId>
@@ -117,6 +117,7 @@
             <groupId>*</groupId>
           </exclusion>
         </exclusions>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>commons-lang</groupId>
@@ -211,6 +212,12 @@
         <groupId>org.mockito</groupId>
         <artifactId>mockito-all</artifactId>
         <version>${mockito-all.version}</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>*</artifactId>
+            <groupId>*</groupId>
+          </exclusion>
+        </exclusions>
         <scope>test</scope>
       </dependency>
 
@@ -218,18 +225,36 @@
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>${junit.version}</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>*</artifactId>
+            <groupId>*</groupId>
+          </exclusion>
+        </exclusions>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>jaxen</groupId>
         <artifactId>jaxen</artifactId>
         <version>${jaxen.version}</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>*</artifactId>
+            <groupId>*</groupId>
+          </exclusion>
+        </exclusions>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>xmlunit</groupId>
         <artifactId>xmlunit</artifactId>
         <version>${xmlunit.version}</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>*</artifactId>
+            <groupId>*</groupId>
+          </exclusion>
+        </exclusions>
         <scope>test</scope>
       </dependency>
 

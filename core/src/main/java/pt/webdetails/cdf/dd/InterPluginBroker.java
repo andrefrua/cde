@@ -184,8 +184,8 @@ public class InterPluginBroker {
       }
     }
 
-    IPluginCall pluginCall = PluginEnvironment.env().getPluginCall( CorePlugin.CDF.getId(), "context", "getConfig" );
-    return pluginCall.call( params.getParameters() );
+    //IPluginCall pluginCall = PluginEnvironment.env().getPluginCall( CorePlugin.CDF.getId(), "context", "getConfig" );
+    return "/resources/test.cdfde"; //pluginCall.call( params.getParameters() );
   }
 
   public static String getCdfEmbed( String protocol, String name, int port, int inactiveInterval, String locale,

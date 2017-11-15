@@ -114,13 +114,13 @@ public final class MetaModelManager {
   private MetaModel readModel() {
     // Read Components from the FS
     XmlFsPluginThingReaderFactory factory =
-        new XmlFsPluginThingReaderFactory( CdeEnvironment.getContentAccessFactory() );
+        new XmlFsPluginThingReaderFactory( null/*CdeEnvironment.getContentAccessFactory()*/ );
     XmlFsPluginModelReader metaModelReader = factory.getMetaModelReader();
     try {
       // read component and property definitions
       MetaModel.Builder builder = metaModelReader.read( factory );
       // read data source definitions
-      readDataSourceComponents( builder );
+      //readDataSourceComponents( builder );
       return builder.build();
     } catch ( ThingReadException ex ) {
       logger.error( "Error while reading model from file system.", ex );

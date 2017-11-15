@@ -70,7 +70,7 @@ public class CdeEngine {
       IBeanFactory factory = new AbstractBeanFactory() {
         @Override
         public String getSpringXMLFilename() {
-          return "cde.spring.xml";
+          return "/Users/ajorge/Pentaho/ctools/cde/core/src/main/java/cde.spring.xml";//"cde.spring.xml";
         }
       };
 
@@ -79,6 +79,8 @@ public class CdeEngine {
 
       if ( env != null ) {
         env.init( factory );
+      } else {
+        env = new PentahoCdeEnvironment();
       }
 
       instance.cdeEnv = env;

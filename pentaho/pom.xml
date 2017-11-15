@@ -14,7 +14,7 @@
   <description>Pentaho Community Dashboard Editor Core Implementation</description>
 
   <properties>
-    <javax.ws.rs-api.version>2.0</javax.ws.rs-api.version>
+    <!--javax.ws.rs-api.version>2.0</javax.ws.rs-api.version -->
     <jersey-multipart.version>1.19.1</jersey-multipart.version>
     <!-- jackson-mapper-asl.version>1.8.2</jackson-mapper-asl.version -->
     <mockito-core.version>1.9.5</mockito-core.version>
@@ -88,7 +88,7 @@
       <artifactId>servlet-api</artifactId>
     </dependency>
 
-    <dependency>
+    <!--dependency>
       <groupId>javax.ws.rs</groupId>
       <artifactId>javax.ws.rs-api</artifactId>
       <version>${javax.ws.rs-api.version}</version>
@@ -98,11 +98,11 @@
           <groupId>*</groupId>
         </exclusion>
       </exclusions>
-    </dependency>
-    <dependency>
+    </dependency-->
+    <!--dependency>
       <groupId>commons-jxpath</groupId>
       <artifactId>commons-jxpath</artifactId>
-    </dependency>
+    </dependency-->
     <dependency>
       <groupId>com.sun.jersey.contribs</groupId>
       <artifactId>jersey-multipart</artifactId>

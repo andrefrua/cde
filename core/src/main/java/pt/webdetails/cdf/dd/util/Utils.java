@@ -13,11 +13,14 @@
 
 package pt.webdetails.cdf.dd.util;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLDecoder;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.text.MessageFormat;
 import java.util.List;
@@ -159,10 +162,11 @@ public class Utils {
    * @throws DocumentException if the document isn't valid
    * @throws IOException       if the file doesn't exist
    */
-  public static Document getDocFromFile( final IBasicFile file, final EntityResolver resolver )
+  public static Document getDocFromFile(final File file, final EntityResolver resolver )
     throws DocumentException, IOException {
     SAXReader reader = XmlParserFactoryProducer.getSAXReader( resolver );
-    return reader.read( file.getContents() );
+    String contents = new String( Files.readAllBytes( Paths.get( file.getPath() ) ) );
+    return reader.read( Files.newInputStream( Paths.get( file.getPath() ) )/*file.getContents()*/ );
   }
 
   public static Document getDocument( InputStream input ) throws DocumentException {
@@ -182,7 +186,7 @@ public class Utils {
 
   public static Document getDocFromFile( final IReadAccess access, final String filePath,
                                          final EntityResolver resolver ) throws DocumentException, IOException {
-    return ( access != null && filePath != null ? getDocFromFile( access.fetchFile( filePath ), resolver ) : null );
+    return ( access != null && filePath != null ? getDocFromFile( new File( filePath )/*access.fetchFile( filePath )*/, resolver ) : null );
   }
 
   public static IReadAccess getAppropriateReadAccess( String resource ) {
