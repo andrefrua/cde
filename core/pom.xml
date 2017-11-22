@@ -456,6 +456,16 @@
       <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
+        <!--<configuration>
+          <instructions>
+            &lt;!&ndash;Include-Resource>
+              {maven-dependencies}
+            </Include-Resource&ndash;&gt;
+            <Import-Package>!pt.webdetails.cpf.*,*</Import-Package>
+            &lt;!&ndash;Export-Package>!pt.webdetails.cpf</Export-Package>
+            <Private-Package>!pt.webdetails.cpf</Private-Package&ndash;&gt;
+          </instructions>
+        </configuration>-->
       </plugin>
     </plugins>
   </build>

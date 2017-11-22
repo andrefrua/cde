@@ -132,8 +132,7 @@ public class DashboardManager {
     throws IOException, FileNotFoundException, JSONException {
     InputStream input = null;
     try {
-      input = new FileInputStream( new File( "/Users/ajorge/Pentaho/ctools/cde/pentaho/solution/" +
-          "pentaho-cdf-dd/pentaho-cdf-dd-require/tests/Raphael/raphael.cdfde"/*dashboardLocation*/ ) );
+      input = new FileInputStream( new File( "C:\\dashboardTest\\Raphael\\raphael.cdfde" ) );
       //input = Utils.getSystemOrUserReadAccess( dashboardLocation ).getFileInputStream( dashboardLocation );
       final JSONObject json = JsonUtils.readJsonFromInputStream( input );
 
@@ -568,12 +567,22 @@ public class DashboardManager {
     // 2. Write it
     //CdfRunJsDashboardWriteContext writeContext = CdeEngine.getInstance().getEnvironment()
     //    .getCdfRunJsDashboardWriteContext( factory, /*indent*/"", bypassCacheRead, dash, options );
-    CdfRunJsDashboardWriteContext writeContext = (new pt.webdetails.cdf.dd.PentahoCdeEnvironment()).getCdfRunJsDashboardWriteContext( factory, /*indent*/"", bypassCacheRead, dash, options );
+    try {
+      CdfRunJsDashboardWriteContext writeContext = (new pt.webdetails.cdf.dd.PentahoCdeEnvironment()).getCdfRunJsDashboardWriteContext( factory, /*indent*/"", bypassCacheRead, dash, options );
 
-    CdfRunJsDashboardWriteResult.Builder dashboardWriteBuilder = new CdfRunJsDashboardWriteResult.Builder();
-    writer.write( dashboardWriteBuilder, writeContext, dash );
+      CdfRunJsDashboardWriteResult.Builder dashboardWriteBuilder = new CdfRunJsDashboardWriteResult.Builder();
+      writer.write( dashboardWriteBuilder, writeContext, dash );
 
-    return dashboardWriteBuilder.build();
+      return dashboardWriteBuilder.build();
+    } catch (Exception ex){
+      _logger.warn( "Class not found for cache key while writing to cache.", ex );
+      return null;
+    }
+
+
+
+
+
   }
 
   private CdfRunJsDashboardWriteResult

@@ -196,8 +196,10 @@ public abstract class CdfRunJsDashboardWriteContext extends DefaultThingWriteCon
   }
 
   protected String getRoot() {
-    return ( this._options.isAbsolute() && !StringUtils.isEmpty( this._options.getAbsRoot() ) )
+    // TODO: Fetch the actual folder where the Dashboard files are located
+    return "";
+    /*return ( this._options.isAbsolute() && !StringUtils.isEmpty( this._options.getAbsRoot() ) )
       ? ( this._options.getSchemedRoot() + CdeEngine.getInstance().getEnvironment().getApplicationBaseContentUrl() )
-      : CdeEngine.getInstance().getEnvironment().getApplicationBaseContentUrl();
+      : CdeEngine.getInstance().getEnvironment().getApplicationBaseContentUrl();*/
   }
 }

@@ -70,7 +70,8 @@ public class CdeEngine {
       IBeanFactory factory = new AbstractBeanFactory() {
         @Override
         public String getSpringXMLFilename() {
-          return "/Users/ajorge/Pentaho/ctools/cde/core/src/main/java/cde.spring.xml";//"cde.spring.xml";
+          return "C:\\dashboardTest\\cde.spring.xml";
+          //return "/Users/ajorge/Pentaho/ctools/cde/core/src/main/java/cde.spring.xml";//"cde.spring.xml";
         }
       };
 

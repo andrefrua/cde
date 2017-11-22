@@ -14,6 +14,9 @@
 package pt.webdetails.cdf.dd.util;
 
 import java.io.File;
+
+import java.io.FileInputStream;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
@@ -500,7 +503,8 @@ public class Utils {
   }
 
   public static String readStyleTemplate( String styleName ) throws IOException {
-    String location = CdeEnvironment.getPluginResourceLocationManager().getStyleResourceLocation( styleName );
+    //String location = CdeEnvironment.getPluginResourceLocationManager().getStyleResourceLocation( styleName );
+    String location = "C:\\dashboardTest\\WDDocs.html";
     if ( StringUtils.isEmpty( location ) ) {
       logger.error( MessageFormat.format( "Couldn''t find style template file ''{0}'', will fallback to ''{1}''",
           styleName, CdeConstants.DEFAULT_STYLE ) );
@@ -512,7 +516,13 @@ public class Utils {
 
   public static String readTemplateFile( String templateFile ) throws IOException {
     try {
-      if ( CdeEnvironment.getPluginRepositoryReader().fileExists( templateFile ) ) {
+
+      File file = new File(templateFile);
+      FileInputStream fis = new FileInputStream(file);
+
+      return Util.toString( fis );
+
+      /*if ( CdeEnvironment.getPluginRepositoryReader().fileExists( templateFile ) ) {
         // template is in solution repository
         return Util.toString( CdeEnvironment.getPluginRepositoryReader().getFileInputStream( templateFile ) );
 
@@ -524,7 +534,7 @@ public class Utils {
       } else {
         // last chance : template is in user-defined folder
         return Util.toString( CdeEnvironment.getUserContentAccess().getFileInputStream( templateFile ) );
-      }
+      }*/
     } catch ( IOException ex ) {
       logger.error( MessageFormat.format( "Couldn't open template file '{0}'.", templateFile ), ex );
       throw ex;
@@ -537,7 +547,9 @@ public class Utils {
   }
 
   public static String getWcdfReposPath( String path ) {
-    return CdeEngine.getEnv().getApplicationReposUrl() + toRepositoryPath( path );
+    // TODO: This needs to be changed to fetch the new location inside DET structure
+    return toRepositoryPath( path );
+    // return CdeEngine.getEnv().getApplicationReposUrl() + toRepositoryPath( path );
   }
 
   public static  String toRepositoryPath( String path ) {

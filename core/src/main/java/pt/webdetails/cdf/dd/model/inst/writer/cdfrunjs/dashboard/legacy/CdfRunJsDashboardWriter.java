@@ -85,27 +85,27 @@ public class CdfRunJsDashboardWriter extends JsWriterAbstract implements IThingW
       throw new ThingWriteException( "Could not read style template file.", ex );
     }
 
-    template = ctx.replaceTokens( template );
+    //template = ctx.replaceTokens( template );
 
     String footer;
-    try {
-      footer =
-        Util.toString( CdeEnvironment.getPluginSystemReader().getFileInputStream( CdeConstants.RESOURCE_FOOTER ) );
-    } catch ( IOException ex ) {
+    /*try {*/
+      footer = "";
+        //Util.toString( CdeEnvironment.getPluginSystemReader().getFileInputStream( CdeConstants.RESOURCE_FOOTER ) );
+/*    } catch ( IOException ex ) {
       throw new ThingWriteException( "Could not read footer file.", ex );
-    }
+    }*/
 
-    String layout = ctx.replaceTokensAndAlias( this.writeLayout( ctx, dash ) );
-    String components = ctx.replaceTokensAndAlias( this.writeComponents( ctx, dash ) );
+    String layout = this.writeLayout( ctx, dash ) ;
+    String components = this.writeComponents( ctx, dash ) ;
     String content = writeContent( layout, components );
-    String header = ctx.replaceTokens( writeHeaders( content, ctx ) );
+    String header = "";// writeHeaders( content, ctx ) ;
 
-    // Leave the DASHBOARD_HEADER_TAG to replace additional stuff on render.
+/*    // Leave the DASHBOARD_HEADER_TAG to replace additional stuff on render.
     template = template
       .replaceAll( CdeConstants.DASHBOARD_HEADER_TAG,
         Matcher.quoteReplacement( header ) + CdeConstants.DASHBOARD_HEADER_TAG )
       .replaceAll( CdeConstants.DASHBOARD_FOOTER_TAG, Matcher.quoteReplacement( footer ) )
-      .replaceAll( CdeConstants.DASHBOARD_CONTENT_TAG, Matcher.quoteReplacement( content ) );
+      .replaceAll( CdeConstants.DASHBOARD_CONTENT_TAG, Matcher.quoteReplacement( content ) );*/
 
     // Export
     builder

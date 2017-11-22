@@ -37,8 +37,8 @@ public class PentahoCdfRunJsDashboardWriteContext extends CdfRunJsDashboardWrite
     final long timestamp = this._writeDate.getTime();
     final String path = this._dash.getSourcePath().replaceAll( "(.+/).*", "$1" );
     final String root = getRoot();
-    final String systemDir = getSystemDir();
-    final String pluginId = getPluginId( path );
+    final String systemDir = ""; //getSystemDir();
+    final String pluginId = ""; //getPluginId( path );
 
 
     return content

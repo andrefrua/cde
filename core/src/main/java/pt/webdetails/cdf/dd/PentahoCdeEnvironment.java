@@ -19,7 +19,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.pentaho.platform.api.engine.IAuthorizationPolicy;
 import org.pentaho.platform.engine.core.system.PentahoSystem;
-import org.pentaho.platform.security.policy.rolebased.actions.RepositoryCreateAction;
+//import org.pentaho.platform.security.policy.rolebased.actions.RepositoryCreateAction;
 import org.pentaho.platform.util.messages.LocaleHelper;
 import pt.webdetails.cdf.dd.datasources.DataSourceManager;
 import pt.webdetails.cdf.dd.datasources.IDataSourceManager;
@@ -224,7 +224,7 @@ public class PentahoCdeEnvironment extends PentahoPluginEnvironment implements I
         return getUserSession().isAdministrator();
       }
     }
-    return authorizationPolicy.isAllowed( RepositoryCreateAction.NAME );
+    return true; // authorizationPolicy.isAllowed( RepositoryCreateAction.NAME );
   }
 
 }

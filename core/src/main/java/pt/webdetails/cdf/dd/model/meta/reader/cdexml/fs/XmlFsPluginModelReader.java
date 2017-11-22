@@ -121,9 +121,9 @@ public final class XmlFsPluginModelReader {
     //List<IBasicFile> filesList = CdeEnvironment.getPluginSystemReader( BASE_COMPS_DIR ).listFiles( null,
     //  new GenericBasicFileFilter( null, DEFINITION_FILE_EXT ), IReadAccess.DEPTH_ALL );
     //PathOrigin origin = new StaticSystemOrigin( BASE_COMPS_DIR );
-    PathOrigin origin = new StaticSystemOrigin( "/Users/ajorge/Pentaho/ctools/stable/cde/cde-core/resource/resources/base/components" );
+    PathOrigin origin = new StaticSystemOrigin( "C:\\Pentaho\\server\\pentaho-server\\pentaho-solutions\\system\\pentaho-cdf-dd\\resources\\base\\components" );
     Collection<File> filesList = FileUtils.listFiles(
-        new File("/Users/ajorge/Pentaho/ctools/stable/cde/cde-core/resource/resources/base/components"),
+        new File("C:\\Pentaho\\server\\pentaho-server\\pentaho-solutions\\system\\pentaho-cdf-dd\\resources\\base\\components"),
         new String[]{"xml"},
         true);
 
@@ -145,7 +145,7 @@ public final class XmlFsPluginModelReader {
     //  new GenericBasicFileFilter( null, DEFINITION_FILE_EXT ), IReadAccess.DEPTH_ALL );
     //File[] filesArray = new File("/Users/ajorge/Pentaho/ctools/stable/cde/cde-core/resource/resources/base/properties").listFiles();
     Collection<File> filesList = FileUtils.listFiles(
-        new File("/Users/ajorge/Pentaho/ctools/stable/cde/cde-core/resource/resources/base/properties"),
+        new File("C:\\Pentaho\\server\\pentaho-server\\pentaho-solutions\\system\\pentaho-cdf-dd\\resources\\base\\properties"),
         new String[]{"xml"},
         true);
 
@@ -167,7 +167,7 @@ public final class XmlFsPluginModelReader {
     //  new GenericBasicFileFilter( CUSTOM_PROPS_FILENAME, DEFINITION_FILE_EXT ), IReadAccess.DEPTH_ALL );
     //File[] filesArray = new File("/Users/ajorge/Pentaho/ctools/stable/cde/cde-core/resource/resources/custom/properties").listFiles();
     Collection<File> filesList = FileUtils.listFiles(
-        new File("/Users/ajorge/Pentaho/ctools/stable/cde/cde-core/resource/resources/custom/properties"),
+        new File("C:\\Pentaho\\server\\pentaho-server\\pentaho-solutions\\system\\pentaho-cdf-dd\\resources\\custom\\properties"),
         new String[]{"xml"},
         true);
 
@@ -236,7 +236,7 @@ public final class XmlFsPluginModelReader {
     //GenericBasicFileFilter filter = new GenericBasicFileFilter( COMPONENT_FILENAME, DEFINITION_FILE_EXT );
     //IReadAccess access = origin.getReader( contentAccessFactory );
     //List<IBasicFile> filesList = access.listFiles( null, filter, IReadAccess.DEPTH_ALL, false, true );
-    File[] filesArray = new File("/Users/ajorge/Pentaho/ctools/stable/cde/cde-core/resource/resources/custom/components").listFiles();
+    File[] filesArray = new File("C:\\Pentaho\\server\\pentaho-server\\pentaho-solutions\\system\\pentaho-cdf-dd\\resources\\custom\\components").listFiles();
 
     if ( filesArray != null ) {
       //logger.debug( String.format( "%d sub-folders found", filesList.size() ) );
