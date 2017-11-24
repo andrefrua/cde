@@ -395,6 +395,11 @@ public class CdfRunJsDashboardWriter extends JsWriterAbstract implements IThingW
           .append( comp.getPluginIdFromOrigin() )
           .append( PLUGIN_COMPONENT_FOLDER )
           .append( className );
+      } else {
+        // CDE custom component with a static system origin
+        componentModuleId
+          .append( CDE_AMD_BASE_COMPONENT_PATH )
+          .append( className );
       }
     } else if ( comp.isWidgetComponent() ) {
       // TODO: process WidgetComponent

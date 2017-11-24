@@ -132,7 +132,7 @@ public class DashboardManager {
     throws IOException, FileNotFoundException, JSONException {
     InputStream input = null;
     try {
-      input = new FileInputStream( new File( "C:\\dashboardTest\\Raphael\\raphael.cdfde" ) );
+      input = new FileInputStream( new File( dashboardLocation ) );
       //input = Utils.getSystemOrUserReadAccess( dashboardLocation ).getFileInputStream( dashboardLocation );
       final JSONObject json = JsonUtils.readJsonFromInputStream( input );
 

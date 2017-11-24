@@ -66,11 +66,9 @@ public final class CdfRunJsDashboardWriteResult implements Serializable {
   }
 
   public String getContent( String contextConfiguration ) {
-    // TODO: Need to change this. Not sure with what
-    return this._content;
-    /*return this._content.replaceFirst(
+    return this._content.replaceFirst(
       CdeConstants.DASHBOARD_CONTEXT_CONFIGURATION_TAG, StringUtils.defaultIfEmpty(
-        Matcher.quoteReplacement( contextConfiguration ), "{}" ) );*/
+        Matcher.quoteReplacement( contextConfiguration ), "{}" ) );
   }
 
   public String getFooter() {

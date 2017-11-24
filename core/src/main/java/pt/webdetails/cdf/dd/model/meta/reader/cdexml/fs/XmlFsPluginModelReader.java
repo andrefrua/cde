@@ -110,7 +110,7 @@ public final class XmlFsPluginModelReader {
     // Read Components
     logger.info( String.format( "Loading BASE components from: %s", BASE_COMPS_DIR ) );
     this.readBaseComponents( model, factory );
-    //this.readCustomComponents( model, factory );
+    this.readCustomComponents( model, factory );
     //this.readWidgetStubComponents( model, factory );
 
     return model;
@@ -122,6 +122,7 @@ public final class XmlFsPluginModelReader {
     //  new GenericBasicFileFilter( null, DEFINITION_FILE_EXT ), IReadAccess.DEPTH_ALL );
     //PathOrigin origin = new StaticSystemOrigin( BASE_COMPS_DIR );
     PathOrigin origin = new StaticSystemOrigin( "C:\\Pentaho\\server\\pentaho-server\\pentaho-solutions\\system\\pentaho-cdf-dd\\resources\\base\\components" );
+
     Collection<File> filesList = FileUtils.listFiles(
         new File("C:\\Pentaho\\server\\pentaho-server\\pentaho-solutions\\system\\pentaho-cdf-dd\\resources\\base\\components"),
         new String[]{"xml"},
@@ -131,7 +132,7 @@ public final class XmlFsPluginModelReader {
       //IBasicFile[] filesArray = filesList.toArray( new IBasicFile[] {} );
       //Arrays.sort( filesArray, getFileComparator() );
       for ( File file : filesList ) {
-        if (file.getName().toLowerCase().endsWith("component.xml") && file.isFile()) this.readComponentsFile( model, factory, file, DEF_BASE_TYPE, origin );
+        if (file.getName().toLowerCase().endsWith(".xml") && file.isFile()) this.readComponentsFile( model, factory, file, DEF_BASE_TYPE, origin );
       }
     }
   }
@@ -224,9 +225,10 @@ public final class XmlFsPluginModelReader {
 
   private void readCustomComponents( MetaModel.Builder model, XmlFsPluginThingReaderFactory factory )
     throws ThingReadException {
-    for ( PathOrigin origin : CdeEnvironment.getPluginResourceLocationManager().getCustomComponentsLocations() ) {
+    /*for ( PathOrigin origin : CdeEnvironment.getPluginResourceLocationManager().getCustomComponentsLocations() ) {
       readCustomComponentsLocation( model, factory, origin );
-    }
+    }*/
+    readCustomComponentsLocation( model, factory, null );
   }
 
   private void readCustomComponentsLocation( MetaModel.Builder model, XmlFsPluginThingReaderFactory factory,
@@ -236,13 +238,16 @@ public final class XmlFsPluginModelReader {
     //GenericBasicFileFilter filter = new GenericBasicFileFilter( COMPONENT_FILENAME, DEFINITION_FILE_EXT );
     //IReadAccess access = origin.getReader( contentAccessFactory );
     //List<IBasicFile> filesList = access.listFiles( null, filter, IReadAccess.DEPTH_ALL, false, true );
-    File[] filesArray = new File("C:\\Pentaho\\server\\pentaho-server\\pentaho-solutions\\system\\pentaho-cdf-dd\\resources\\custom\\components").listFiles();
-
-    if ( filesArray != null ) {
+    //File[] filesArray = new File("/Users/ajorge/Pentaho/ctools/stable/cde/cde-core/resource/resources/custom/components").listFiles();
+    Collection<File> filesList = FileUtils.listFiles(
+      new File("C:\\Pentaho\\server\\pentaho-server\\pentaho-solutions\\system\\pentaho-cdf-dd\\resources\\custom\\components"),
+      new String[]{"xml"},
+      true);
+    if ( filesList != null ) {
       //logger.debug( String.format( "%d sub-folders found", filesList.size() ) );
       //IBasicFile[] filesArray = filesList.toArray( new IBasicFile[] {} );
       //Arrays.sort( filesArray, getFileComparator() );
-      for ( File file : filesArray ) {
+      for ( File file : filesList ) {
         this.readComponentsFile( model, factory, file, DEF_CUSTOM_TYPE, origin );
       }
     }

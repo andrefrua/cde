@@ -97,8 +97,10 @@ public abstract class CdfRunJsDashboardWriteContext extends DefaultThingWriteCon
   }
 
   public CdfRunJsDashboardWriteContext withIndent( String indent ) {
-    return CdeEngine.getInstance().getEnvironment()
-      .getCdfRunJsDashboardWriteContext( getFactory(), indent, _bypassCacheRead, _dash, _options );
+    /*return CdeEngine.getInstance().getEnvironment()
+      .getCdfRunJsDashboardWriteContext( getFactory(), indent, _bypassCacheRead, _dash, _options );*/
+    return new pt.webdetails.cdf.dd.model.inst.writer.cdfrunjs.dashboard.amd.PentahoCdfRunJsDashboardWriteContext(
+        getFactory(), indent, _bypassCacheRead, _dash, _options );
   }
 
   public String getIndent() {
