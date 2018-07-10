@@ -14,27 +14,39 @@
 package org.pentaho.ctools.cde.api;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static javax.ws.rs.core.MediaType.TEXT_HTML;
+import static pt.webdetails.cpf.utils.MimeTypes.JAVASCRIPT;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import pt.webdetails.cdf.dd.CdeConstants;
+import pt.webdetails.cdf.dd.*;
 import pt.webdetails.cdf.dd.CdeConstants.MethodParams;
-import pt.webdetails.cdf.dd.DashboardManager;
+import pt.webdetails.cdf.dd.editor.DashboardEditor;
 import pt.webdetails.cdf.dd.model.core.writer.ThingWriteException;
 import pt.webdetails.cdf.dd.model.inst.writer.cdfrunjs.dashboard.CdfRunJsDashboardWriteOptions;
 import pt.webdetails.cdf.dd.model.inst.writer.cdfrunjs.dashboard.CdfRunJsDashboardWriteResult;
+import pt.webdetails.cdf.dd.structure.DashboardWcdfDescriptor;
+import pt.webdetails.cdf.dd.util.CdeEnvironment;
+import pt.webdetails.cdf.dd.util.Utils;
+import pt.webdetails.cpf.Util;
+import pt.webdetails.cpf.localization.MessageBundlesHelper;
+
+import java.util.Locale;
 
 @Path( "renderer" )
 public class RenderApi {
 
   private static final Log logger = LogFactory.getLog( RenderApi.class );
+  protected ICdeEnvironment privateEnviroment;
   private DashboardManager dashboardManager;
 
   @GET
@@ -100,6 +112,8 @@ public class RenderApi {
     }
   }
 
+
+
   private CdfRunJsDashboardWriteResult getDashboardModule( String path, String scheme, String root,
                                                            boolean absolute, boolean bypassCache, boolean debug,
                                                            String style, String alias )
@@ -149,4 +163,103 @@ public class RenderApi {
     }
     return dashboardAlias;
   }
+
+
+/************************************************************************
+ *
+ *   To support the CDE Editor
+ *
+ ************************************************************************ */
+  @GET
+  @Path( "/edit" )
+  @Produces( TEXT_HTML )
+  public String edit(
+    @QueryParam( MethodParams.SOLUTION ) @DefaultValue( "" ) String solution,
+    @QueryParam( MethodParams.PATH ) @DefaultValue( "" ) String path,
+    @QueryParam( MethodParams.FILE ) @DefaultValue( "" ) String file,
+    @QueryParam( MethodParams.DEBUG ) @DefaultValue( "false" ) boolean debug,
+    @QueryParam( "isDefault" ) @DefaultValue( "false" ) boolean isDefault,
+    @Context HttpServletRequest request,
+    @Context HttpServletResponse response ) throws Exception {
+
+    solution = decodeAndEscape( solution );
+    path = decodeAndEscape( path );
+    file = decodeAndEscape( file );
+
+    String wcdfPath = getWcdfRelativePath( solution, path, file );
+
+    // TODO: Deal with permissions to edit
+    /*if ( !CdeEnvironment.canCreateContent() ) {
+      return "This functionality is limited to users with permission 'Create Content'";
+    } else if ( Utils.getSystemOrUserRWAccess( wcdfPath ) == null ) {
+      return "Access Denied or file not found - " + wcdfPath; //TODO: keep html?
+    }*/
+
+    DashboardWcdfDescriptor descriptor = DashboardWcdfDescriptor.load( wcdfPath );
+
+    return getEditor( wcdfPath, debug, request.getScheme(), isDefault, response, descriptor.isRequire() );
+  }
+
+  private String getEditor( String path, boolean debug, String scheme, boolean isDefault,
+                            HttpServletResponse response, boolean isRequire ) throws Exception {
+    response.setContentType( TEXT_HTML );
+    String result = DashboardEditor.getEditor( path, debug, scheme, isDefault, isRequire );
+
+    //i18n token replacement
+    if ( !StringUtils.isEmpty( result ) ) {
+
+      /* cde editor's i18n is different; it continues on relying on pentaho-cdf-dd/lang/messages.properties */
+
+      String msgDir = Util.SEPARATOR + "lang" + Util.SEPARATOR;
+      result = new MessageBundlesHelper( msgDir, CdeEnvironment.getPluginSystemReader( null ),
+      CdeEnvironment.getPluginSystemWriter(), getEnv().getLocale(),
+      getEnv().getExtApi().getPluginStaticBaseUrl() ).replaceParameters( result, null );
+    }
+
+    return result;
+  }
+
+  private ICdeEnvironment getEnv() {
+    if ( this.privateEnviroment != null ) {
+      return this.privateEnviroment;
+    }
+    return CdeEngine.getEnv();
+  }
+
+  private String decodeAndEscape( String path ) {
+    // TODO: Import XSSHelper correctly
+    return path;
+    // final XSSHelper helper = XSSHelper.getInstance();
+
+    // return helper.escape( Utils.getURLDecoded( path ) );
+  }
+
+  private String getWcdfRelativePath( String solution, String path, String file ) {
+    //TODO: change to use path instead of file
+    //    if ( !StringUtils.isEmpty( solution ) || !StringUtils.isEmpty( file ) ) {
+    //      logger.warn( "Use of solution/path/file is deprecated. Use just the path argument" );
+    return Util.joinPath( solution, path, file );
+    //    }
+    //    else return path;
+    //    final String filePath = "/" + solution + "/" + path + "/" + file;
+    //    return filePath.replaceAll( "//+", "/" );
+  }
+
+  @GET
+  @Path( "/getComponentDefinitions" )
+  @Produces( JAVASCRIPT )
+  public String getComponentDefinitions(
+      @QueryParam( MethodParams.SUPPORTS ) @DefaultValue( CdeConstants.DashboardSupportedTypes.LEGACY ) String supports,
+      @Context HttpServletResponse response ) {
+
+    // Get and output the definitions
+    if ( !StringUtils.isEmpty( supports ) && supports.equals( CdeConstants.DashboardSupportedTypes.AMD ) ) {
+      return MetaModelManager.getInstance().getAmdJsDefinition();
+    } else {
+      return MetaModelManager.getInstance().getJsDefinition();
+    }
+  }
+
+
+
 }

@@ -15,6 +15,7 @@ package org.pentaho.ctools.cde.environment;
 import java.util.Locale;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.pentaho.ctools.cde.extapi.CdeApiPathProvider;
 import org.pentaho.ctools.cde.plugin.resource.PluginResourceLocationManager;
 import pt.webdetails.cdf.dd.ICdeEnvironment;
 import pt.webdetails.cdf.dd.IPluginResourceLocationManager;
@@ -55,55 +56,54 @@ public class CdeEnvironment implements ICdeEnvironment {
 
   @Override
   public void init( IBeanFactory factory ) throws InitializationException {
-    logger.fatal( "Not implemented for the OSGi environment" );
+    logger.fatal( "init() - Not implemented for the OSGi environment" );
   }
 
   @Override
   public Locale getLocale() {
-    logger.fatal( "Not implemented for the OSGi environment" );
-    return null;
+    logger.fatal( "getLocale() - Not implemented for the OSGi environment" );
+    return Locale.ENGLISH;
   }
 
   @Override
   public IResourceLoader getResourceLoader() {
-    logger.fatal( "Not implemented for the OSGi environment" );
+    logger.fatal( "getResourceLoader() - Not implemented for the OSGi environment" );
     return null;
   }
 
   @Override
   public String getCdfIncludes( String dashboard, String type, boolean debug, boolean absolute, String absRoot,
                                 String scheme ) throws Exception {
-    logger.fatal( "Not implemented for the OSGi environment" );
+    logger.fatal( "getCdfIncludes() - Not implemented for the OSGi environment" );
     return null;
   }
 
   @Override
   public ICdeApiPathProvider getExtApi() {
-    logger.fatal( "Not implemented for the OSGi environment" );
-    return null;
+    return new CdeApiPathProvider( this.getUrlProvider() );
   }
 
   @Override
   public IFileHandler getFileHandler() {
-    logger.fatal( "Not implemented for the OSGi environment" );
+    logger.fatal( "getFileHandler() - Not implemented for the OSGi environment" );
     return null;
   }
 
   @Override
   public IUrlProvider getUrlProvider() {
-    logger.fatal( "Not implemented for the OSGi environment" );
+    logger.fatal( "getUrlProvider() - Not implemented for the OSGi environment" );
     return null;
   }
 
   @Override
   public IUserSession getUserSession() {
-    logger.fatal( "Not implemented for the OSGi environment" );
+    logger.fatal( "getUserSession() - Not implemented for the OSGi environment" );
     return null;
   }
 
   @Override
   public void refresh() {
-    logger.fatal( "Not implemented for the OSGi environment" );
+    logger.fatal( "refresh() - Not implemented for the OSGi environment" );
   }
 
   @Override
