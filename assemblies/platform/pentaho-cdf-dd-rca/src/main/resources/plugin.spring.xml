@@ -49,7 +49,7 @@
   <bean id="cdeEngine" class="pt.webdetails.cdf.dd.CdeEngine" scope="singleton"  factory-method="getInstance">
     <property name="environment" ref="pentahoCdeEnvironment"/>
   </bean>
-  <bean id="remoteRepositoryFactory" class="pt.webdetails.cpf.repository.rca.RemotePentahoPluginEnvironment"/>
+  <bean id="remoteRepositoryFactory" class="pt.webdetails.cpf.repository.rca.RemoteRepositoryAccessFactory"/>
   <bean id="pentahoCdeEnvironment" class="pt.webdetails.cdf.dd.PentahoCdeEnvironment" scope="singleton">
     <property name="pluginResourceLocationManager" ref="pluginResourceLocationManager"/>
     <property name="resourceLoader" ref="pentahoPluginResourceLoader"/>
